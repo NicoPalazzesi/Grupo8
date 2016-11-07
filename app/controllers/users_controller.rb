@@ -10,4 +10,11 @@ class UsersController < ApplicationController
   
   def destroy
   end
+
+  def update
+  end
+
+  def sign_in
+  end
+
 end

@@ -3,10 +3,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       
       ##Datos del usuario
-      t.string :nombre,null: false, default ""
-      t.string :apellido,null: false, default ""
-      t.datetime :fecha
-      t.integer :telefono,null: false, default 0
+      #t.string :nombre,null: false, default ""
+      #t.string :apellido,null: false, default ""
+      #t.datetime :fecha
+      #t.integer :telefono,null: false, default 0
 
 
       ## Database authenticatable
