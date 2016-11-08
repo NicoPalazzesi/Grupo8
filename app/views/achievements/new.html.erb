@@ -1,0 +1,34 @@
+<!-- esta vista permite crear nuevo logro -->
+
+
+<h1 class='titulo_logros'> Creador de Logros </h1>
+<br>
+
+
+
+<%= form_tag( { :action => :create, }, { :method => :post }) %>
+  <!-- <form action="/achievements" method="POST">  -->
+  <div class="form-group">
+
+    <label>Nombre</label>
+    <input class="form-control" id="nombre" name="achievement[nombre]" placeholder="Escribe el nombre del logro" type="text" maxlength="35" required>  
+    <br>  
+     <label>Rango Mínimo</label>
+    <input class="form-control" id="rangoMin" name="achievement[rangoMin]" placeholder="Ingresa un número" type="number" maxlength="4" required>   
+    <br> 
+    <label>Rango Máximo</label>
+    <input class="form-control" id="rangoMax" name="achievement[rangoMax]" placeholder="Ingresa un número" type="number" maxlength="4" required>    
+  </div>
+  <br>  
+  <div class="cartel-error" role="alert" >
+    <strong><%= flash[:notice] %></strong>
+  </div>
+  <button type="submit" class="btn btn-primary">Crear Logro</button>
+  <a href=" ../achievements/" class="btn btn-primary">Volver</a>
+</form> 
+
+
+
+
+
+

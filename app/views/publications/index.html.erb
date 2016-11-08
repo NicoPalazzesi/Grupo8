@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"> <strong>Publicaciones</strong></div>
+  
+  <!-- Table -->
+  <table class="table">
+	<tr>
+		<th>Título</th>
+		<th>Ciudad</th>
+		<th>Foto</th>
+	</tr>
+	<%Publication.order("created_at desc").each do |publicacion| %>
+		<tr>
+			<td><%=link_to publicacion.titulo, publicacion%></td>
+			<!--<td><%=publicacion.descripcion%></td>-->
+			<td><%=publicacion.ciudad%></td>
+			<td>  
+			<% if publicacion.foto.present? %>
+				<%= image_tag publicacion.foto, :size => '80x80'%>
+			<% else %>
+				<img src="http://68.media.tumblr.com/avatar_28012e5b8492_128.png" width=80 height=80/>
+			<% end %>
+			</td>	
+		</tr>
+	<%end%>
+  </table>
+</div>

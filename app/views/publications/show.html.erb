@@ -1,0 +1,49 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Gauchada --> Show</title>
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <link href="blog.css" rel="stylesheet">
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+  </head>
+
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title"><%= @publicacion.titulo %></h1>
+      	<p class="blog-post-meta"><%@publicacion.created_at%> por <a href="#"><%=%></a></p>
+      </div>
+
+      <% if @publicacion.foto.present? %>
+        <%= image_tag @publicacion.foto%>
+      <% else %>
+        <img src="http://68.media.tumblr.com/avatar_28012e5b8492_128.png" width=100 height=150/>
+      <% end %>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <hr>
+            <p><%=@publicacion.descripcion%></p>
+           </div>
+          <a href=" ../" class="btn btn-primary">Volver</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+</body></html>

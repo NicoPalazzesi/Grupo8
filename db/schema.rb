@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107180305) do
+ActiveRecord::Schema.define(version: 20161107232327) do
+
+  create_table "achievements", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "rangoMin"
+    t.integer  "rangoMax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "publications", force: :cascade do |t|
+    t.string   "titulo"
+    t.string   "descripcion"
+    t.string   "ciudad"
+    t.string   "foto"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

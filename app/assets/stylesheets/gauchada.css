@@ -1,0 +1,59 @@
+/* Estilo de la vista de los logros */ 
+.titulo_logros {
+    color: orange;
+    padding-left: 22px; /* modificar el margen del body de la pag principal -- borrar */
+    font-family: verdana;
+}
+
+tr {
+	text-align: center;
+}
+
+th {
+	text-align: center;
+}
+
+.form-control{
+	width: 35%
+
+}
+
+.btn-primary{
+	background-color: orange;
+    border-color: orange;
+}
+
+.btn-primary:hover {
+	background-color: #e07a0d;
+    border-color: #e07a0d;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, 
+.btn-primary.focus:active, .btn-primary:active:focus, .btn-primary:active:hover, 
+.open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus,
+.open > .dropdown-toggle.btn-primary:hover {
+	background-color: #e07a0d;
+    border-color: #e07a0d;
+}
+
+.cartel-error {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.42857;
+    color: red;
+}	
+
+.cartel-exito {
+	margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.42857;
+    color: green;
+}
+
+.panel-default > .panel-heading {
+    background-image: linear-gradient(to bottom, orange 0px, orange 100%);
+    font-size: 30px;
+    text-align: center;
+}
+
+

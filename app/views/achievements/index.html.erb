@@ -1,0 +1,36 @@
+<!-- Esta vista muestra el listado de logros -->
+
+<h1 class='titulo_logros'> Lista de Logros </h1>
+<br>
+<%= link_to "Nuevo Logro", new_achievement_path, class: 'btn btn-primary' %>
+<br>
+<br>
+<div class="cartel-exito" role="alert" >
+    <strong><%= flash[:notice] %></strong>
+</div>
+<br>
+<div class="col-md-6">
+	<table class="table">
+		<thead>
+			<tr>
+				<th> Nombre </th>
+				<th> Rango Minimo </th>
+				<th> Rango Maximo </th>
+			</tr>
+		</thead>
+		<tbody>
+			<% Achievement.ordenar_asc.each do |l| %>
+			<tr>			
+				<td> <%= l.nombre %> </td> 
+				<td> <%= l.rangoMin %> </td>
+				<td> <%= l.rangoMax %> </td>
+				<td> 
+					<%= link_to "Editar", edit_achievement_path(l), class: 'btn btn-primary' %>
+					<%= link_to "Eliminar", l, method: :delete, class: 'btn btn-primary' %>		
+				</td>				
+			</tr>			
+			<% end %>	
+		</tbody>
+	</table>
+</div>
+
