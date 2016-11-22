@@ -1,0 +1,39 @@
+<h1 class='titulo_logros'> Creador de publicación </h1>
+<br>
+
+
+
+<%# form_tag( { :action => :create, }, { :method => :post }) %>
+<%= form_for @publication do |f|%>
+  <!-- <form action="/publications" method="POST">  -->
+  <div class="form-group">
+
+    <label>Título</label>
+    <%= f.text_field :titulo, placeholder: "Escribe el titulo de la publicación", class: 'form-control', maxlength: 35, required: true %>
+    <br>  
+
+     <label>Descripcion</label>
+     <%= f.text_area :descripcion, placeholder: "Escribe una descripcion", class: 'form-control', required: true %>
+    <br>  
+
+    <label>Ciudad</label>
+    <%= f.text_field :ciudad, placeholder: "Escribe la ciudad", class: 'form-control', maxlength: 35, required: true %>
+    <br>  
+
+     <label>Foto</label>
+    <%= f.text_field :foto, placeholder: "Escribe la url de la imagen", class: 'form-control' %> 
+    <br>  
+
+
+     <button type="submit" class="btn btn-primary">Crear Publicación</button>
+<% end %>
+
+
+  <!-- <div class="cartel-error" role="alert" >
+    <strong>< flash[:notice] %></strong>
+  </div> -->
+ 
+  <a href=" ../" class="btn btn-primary">Volver</a>
+</form> 
+
+

@@ -1,0 +1,18 @@
+<!-- Vista para ofrecerme a realizar un favor -->
+
+<h1>Realizar ofrecimiento</h4>
+
+<%= form_tag( ofrecimientos_path(:publication_id => @publicacion_id), action: :create,  method: :post ) %>
+  <!-- <form action="/achievements" method="POST">  -->
+  <div class="form-group">
+
+    <label>Descripción</label>
+    <input class="form-control" id="nombre" name="ofrecimiento[descripcion]" placeholder="Ingrese una descripción" type="text" maxlength="100" required>  
+    <br>
+    <label>Fecha para la cual puede realizar la gauchada</label>
+    <br>
+    <input type="date" name="ofrecimiento[fecha]">
+  </div>
+  <button type="submit" class="btn btn-primary">Realizar ofrecimiento</button>
+  <a href=" ../" class="btn btn-primary">Volver</a>
+</form>

@@ -1,0 +1,28 @@
+
+
+
+<h1 class='titulo_logros'> Editor de publicación </h1>
+<br>
+
+<%= form_for @publication, :url =>{:action => "update", :id =>@publication} do |f| %>
+
+<div class="form-group">
+
+    <label>Titulo</label>
+    <input class="form-control" id="publication_nombre" name="publication[titulo]" placeholder="Escribe el titulo de la publicación" type="text" maxlength="35" value="<%= @publication.titulo %>" required>  
+    <br>  
+    <label>Descripcion</label>
+    <textarea class="form-control" id="publication_descripcion" name="publication[descripcion]" type="text" required> <%=@publication.descripcion %>
+    </textarea>
+    <br>  
+    <label>Ciudad</label>
+    <input class="form-control" id="publication_ciudad" name="publication[ciudad]" placeholder="Escribe la ciudad" type="text" value="<%= @publication.ciudad %>" maxlength="35" required>  
+    <br>     
+    <label>Foto (opcional)</label>
+    <input class="form-control" id="publication_foto" name="publication[foto]" placeholder="Escribe la URL de la foto" type="text" value="<%= @publication.foto %>" maxlength="500" >  
+    <br> 
+
+  <br>  
+  <button type="submit" class="btn btn-primary">Editar Publicación</button>
+  <a href=" ../" class="btn btn-primary">Volver</a>
+<% end %>

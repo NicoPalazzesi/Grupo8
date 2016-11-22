@@ -1,0 +1,16 @@
+<h1>Calificar usuario</h4>
+
+<%= form_tag( qualifications_path(:publicacion_id => @publicacion_id, :user_ofrecido => @usuario_id), action: :create,  method: :post ) %>
+	<div class="form-group">
+    <label>Calificación</label>
+    <br>
+    <input name="qualification[calificacion]" type="radio" value="true" />Positvo
+	<br />
+	<input name="qualification[calificacion]" type="radio" value="false" />Negativo
+    <br>
+    <label>Descripción</label>
+    <input class="form-control" id="nombre" name="qualification[descripcion]" placeholder="Ingrese una descripción" type="text" maxlength="100" required>  
+  </div>
+  <button type="submit" class="btn btn-primary">Realizar ofrecimiento</button>
+  <a href=" ../" class="btn btn-primary">Volver</a>
+</form>

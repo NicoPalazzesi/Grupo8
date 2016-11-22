@@ -1,0 +1,26 @@
+<h1> Compra de Puntos </h1>
+<h5>El valor de cada punto es de $12</h5>
+<br>
+
+<%= form_tag( { :action => :create, }, { :method => :post }) %>
+
+<div>
+	<label>Número de Tarjeta</label>
+	<br>
+	<input name="buy[tarjeta]" class="form-control" placeholder="Número de la Tarjeta" minlength="16" maxlength="17" required="true" numericality="true" >  
+	<br>
+	<label>Titular de la Tarjeta</label>
+	<input class="form-control" placeholder="Titular de la tarjeta como figura en la misma" type="text" minlength="6" required="true"> 
+	<br>
+	<label>Codigo de seguridad</label>
+	<input class="form-control" placeholder="Codigo de seguridad de la tarjeta" required="true" type="number" max="9999"
+	oninvalid="setCustomValidity('El codigo de seguridad contiene entre 3 y 4 digitos')" oninput="setCustomValidity('')"> 
+	<br>
+	<label>Cantidad de Puntos</label>
+	<br>
+	<input name="buy[puntos]" class="form-control" placeholder="Cantidad de puntos que desea comprar" required="true", type="number" min="1" >
+</div>
+
+<br>
+<button type="submit" class="btn btn-primary">Comprar</button>
+<a href="../" class="btn btn-primary">Volver</a>

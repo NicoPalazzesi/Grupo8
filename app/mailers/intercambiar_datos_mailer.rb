@@ -1,0 +1,2 @@
+class IntercambiarDatosMailer < ApplicationMailer
+end

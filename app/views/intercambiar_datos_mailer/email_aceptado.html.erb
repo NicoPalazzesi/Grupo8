@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hola <%= @user.nombre %></h1>
+    <p>
+      Fuiste aceptado para realizar un favor. Los datos de contacto son:
+    </p>
+    <p> Nombre: <%= @user_acepto.nombre %> </p>
+    <p>	Apellido: <%= @user_acepto.apellido %> </p>
+    <p> Email: <%= @user_acepto.email %> </p>
+    <p> Teléfono: <%=@user_acepto.telefono %> </p>
+  </body>
+</html>

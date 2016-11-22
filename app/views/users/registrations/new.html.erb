@@ -1,0 +1,52 @@
+<h2>Registrarse</h2>
+
+<%= form_for(resource, as: resource_name, url: user_registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+
+  <div>
+        <%= f.label :nombre %><br />
+        <%= f.text_field :nombre, autofocus: true, required: true, placeholder: "Ingrese un Nombre"  %>
+  </div>
+
+  <div>
+        <%= f.label :apellido %><br />
+        <%= f.text_field :apellido, autofocus: true, required: true, placeholder: "Ingrese un Apellido" %>
+  </div>
+
+  <div>
+        <%= f.label :fecha %><br />
+        <%= f.date_select :fecha, autofocus: true, start_year:1940, end_year:2016, required: true, placeholder: "Ingrese una Fecha" %>
+  </div>  
+
+  <div>
+        <%= f.label :telefono %><br />
+        <%= f.text_field :telefono, autofocus: true, required: true, placeholder: "Ingrese un Telefono" %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, required: true, placeholder: "Ingrese un email" %>
+  </div>
+
+  <div class="field">
+    <label>Contraseña</label>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> caracteres minimo)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", required: true, placeholder: "Ingrese una Contraseña" %>
+  </div>
+
+  <div class="field">
+    <label>Confirme su contraseña</label><br>
+    <%= f.password_field :password_confirmation, autocomplete: "off", required: true, placeholder: "Confirme su Contraseña" %><br />
+  </div>
+
+  <div class="actions">
+    <button type="submit" class="btn btn-primary">Registrarme</button>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

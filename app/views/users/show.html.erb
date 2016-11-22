@@ -1,0 +1,12 @@
+<h1>Perfil de <%= @usuario.nombre %><h1>
+
+	<h4>Nombre: <%= @usuario.nombre %></h4>
+	<br>
+	<h4>Apellido: <%= @usuario.apellido %></h4>
+	<br>
+	<h4>Logro del usuario: <%= @usuario.puntos %></h4>
+	<br>
+	<% if current_user == @usuario %>
+		<%= link_to 'Editar Perfil',  edit_user_registration_path, class: 'btn btn-primary' %>
+	<% end %>
+	<a href=" ../" class="btn btn-primary">Volver</a>

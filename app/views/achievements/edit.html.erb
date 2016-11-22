@@ -1,0 +1,20 @@
+<h1 class='titulo_logros'> Editor de Logros </h1>
+<br>
+ 
+<%= form_for @achievement, :url =>{:action => "update", :id =>@achievement} do |f| %>
+
+<div class="form-group">
+
+    <label>Nombre</label>
+    <input class="form-control" id="achievement_nombre" name="achievement[nombre]" placeholder="Escribe el nombre del logro" type="text" maxlength="35" value="<%= @achievement.nombre %>" required>  
+    <br>  
+     <label>Rango Mínimo</label>
+    <input class="form-control" id="achievement_rangoMin" name="achievement[rangoMin]" type="number" maxlength="4" value="<%= @achievement.rangoMin %>" placeholder="Ingresa un número" required >  
+    <br> 
+    <label>Rango Máximo</label>
+    <input class="form-control" id="achievement_rangoMax" name="achievement[rangoMax]" placeholder="Ingresa un número" type="number" maxlength="4" value="<%= @achievement.rangoMax %>" required>    
+  </div>
+  <br>  
+  <button type="submit" class="btn btn-primary">Editar Logro</button>
+  <a href=" ../../achievements/" class="btn btn-primary">Volver</a>
+<% end %>
