@@ -37,7 +37,7 @@ class OfrecimientosController < ApplicationController
     ofre.save
     IntercambiarDatosMailer.email_aceptado(ofre.user, ofre.publication.user).deliver
     IntercambiarDatosMailer.email_contacto(ofre.user, ofre.publication.user).deliver
-    redirect_to root_path
+    redirect_to :back
   end
 
 end

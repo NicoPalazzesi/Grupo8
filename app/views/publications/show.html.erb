@@ -10,7 +10,7 @@
       </div>
 
       <% if @publicacion.foto.present? %>
-        <%= image_tag @publicacion.foto %>
+        <%= image_tag @publicacion.foto, :size => '340x340'%>
       <% else %>
         <img src="http://68.media.tumblr.com/avatar_28012e5b8492_128.png" width=100 height=150/>
       <% end %>
@@ -48,7 +48,7 @@
                       <ul class="comments">
                       <li class="clearfix">
                         <div class="post-comments">
-                          <p class="meta"><%=@publicacion.created_at.day%>/<%=@publicacion.created_at.month%>/<%=@publicacion.created_at. year%> <a href="#"><%=comentario.user.nombre%></a> dijo:
+                          <p class="meta"><%=@publicacion.created_at.day%>/<%=@publicacion.created_at.month%>/<%=@publicacion.created_at. year%> <a href="#"><%= link_to comentario.user.nombre, comentario.user %></a> dijo:
                           <p>
                             <%=comentario.descripcion%>    
                           </p>
@@ -71,7 +71,7 @@
                   <ul class="comments">
                   <li class="clearfix">
                     <div class="post-comments">
-                        <p class="meta"><a href="#"><%=ofrecimiento.user.nombre%></a> se ofreció:
+                        <p class="meta"><a href="#"><%= link_to ofrecimiento.user.nombre, ofrecimiento.user %></a> se ofreció:
                         <p><%=ofrecimiento.descripcion%> </p>
                         
                         <% if @publicacion.ofrecimientos.find_by(aceptado: true).nil? and current_user == @publicacion.user %>
