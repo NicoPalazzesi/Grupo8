@@ -25,6 +25,8 @@
           <% if user_signed_in? %>
             <% if @usuarioActual == @publicacion.user || @usuarioActual.admin %> 
               <%= link_to "Eliminar", @publicacion, method: :delete, class: 'btn btn-primary' %>   
+            <%end%>
+            <% if @usuarioActual == @publicacion.user%> 
                 <%= link_to "Editar", edit_publication_path(@publicacion), class: 'btn btn-primary' %>
             <% end %> 
             <% if current_user != @publicacion.user && @publicacion.ofrecimientos.find_by(user: current_user.id).nil? %> 
