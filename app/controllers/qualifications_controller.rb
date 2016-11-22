@@ -11,6 +11,9 @@ class QualificationsController < ApplicationController
 		@calificaciones.user_id = params[:user_ofrecido]
 		@calificaciones.publication_id = params[:publicacion_id]
 		@calificaciones.calificado=true
+		
+		
+
 		if @calificaciones.save
 			if @calificaciones.calificacion
 				

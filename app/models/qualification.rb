@@ -1,5 +1,6 @@
 class Qualification < ApplicationRecord
-	validates :calificacion, presence: true #:in => [true, false]
+	validates_inclusion_of :calificacion, presence: true, :in => [true, false]
+	validates :descripcion, presence: true
 
 	belongs_to :publication
 	belongs_to :user
