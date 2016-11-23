@@ -17,21 +17,28 @@ class PublicationsController < ApplicationController
 
   def new 
       @usuarioActual=current_user
-    @publication = Publication.new
+      @publication = Publication.new
   end
 
   def create
-  @publication = Publication.new(params.require(:publication).permit(:titulo, :descripcion, :ciudad, :foto))
-  @publication.user = current_user
+    @publication = Publication.new(params.require(:publication).permit(:titulo, :descripcion, :ciudad, :foto))
+    @publication.user = current_user
 
 
-  if @publication.save
-    flash[:notice] = "Publicacion creada exitosamente."
-        redirect_to :action => 'index'            
+    if (@publication.user.puntos <=0 )
+      flash[:notice] = "No cuenta con los puntos necesarios para crear una publicación"
+      redirect_to :action => 'index'
     else
-      flash[:notice] = "El titulo de la publicacion ya existe."
-       redirect_to :action => 'new'                       
-    end    
+      if @publication.save
+        flash[:notice] = "Publicacion creada exitosamente."
+        @publication.user.puntos = @publication.user.puntos - 1
+        redirect_to :action => 'index'            
+      else
+        flash[:notice] = "El titulo de la publicacion ya existe."
+        redirect_to :action => 'new'                       
+      end    
+    end
+
   end
 
   def edit
