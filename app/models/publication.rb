@@ -4,7 +4,7 @@ class Publication < ApplicationRecord
 	validates :descripcion, presence: true
 	validates :ciudad, presence: true
 	belongs_to :user
-	has_many :comments
-	has_many :ofrecimientos
-	has_one :qualification
+	has_many :comments, dependent: :destroy
+	has_many :ofrecimientos, dependent: :destroy
+	has_one :qualification, dependent: :destroy
 end

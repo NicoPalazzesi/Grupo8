@@ -6,9 +6,9 @@ class User < ApplicationRecord
   
   validates :telefono, :numericality => {:only_integer => true, :message => "Ingrese solo numeros"}
 
-  has_many :publications
-  has_many :ofrecimientos
-  has_many :qualifications
+  has_many :publications, dependent: :destroy
+  has_many :ofrecimientos, dependent: :destroy
+  has_many :qualifications, dependent: :destroy
   
   before_validation :mayor_de_edad
 

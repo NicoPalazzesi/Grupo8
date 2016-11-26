@@ -22,8 +22,8 @@
 	<%end%>
  	</table>
   	</div>
+  	<br>
   <h4>Publicaciones realizadas por <%=@usuario.nombre %>:</h4>
-    	<br>
   <div class="panel panel-default">
   	<table class="table">
   	<tr>
@@ -44,7 +44,28 @@
 	<%end%>
   </table>
 	</div>
-
+	<br>
+	<h4>Publicaciones a las que se ofreció para realzar <%=@usuario.nombre %>:</h4>
+  <div class="panel panel-default">
+  	<table class="table">
+  	<tr>
+		<th>Titulo</th>
+		<th>Ciudad</th>
+		<th>Resuelta?</th>
+	</tr>
+	<% @usuario.ofrecimientos.each do |ofrecimiento| %>
+		<tr>
+			<td><%=link_to ofrecimiento.publication.titulo, ofrecimiento.publication%></td>
+			<td><%=ofrecimiento.publication.ciudad%></td>
+			<%if ofrecimiento.publication.qualification.nil?%>
+				<td>No</td>
+			<%else%>
+				<td>Sí</td>
+			<%end%>	
+		</tr>
+	<%end%>
+  </table>
+	</div>
 
 	<% if current_user == @usuario %>
 		<%= link_to 'Editar Perfil',  edit_user_registration_path, class: 'btn btn-primary' %>

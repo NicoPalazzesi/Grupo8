@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :publications
   resources :buys
   resources :qualifications
+  resources :comments
   resources :ofrecimientos do
     get 'accept', :on => :collection
   end

@@ -1,0 +1,12 @@
+<h1> Dejá un comentario! </h1>
+<br>
+<%= form_tag( comments_path(:publication_id => @publicacion_id), action: :create,  method: :post ) %>
+  <!-- <form action="/achievements" method="POST">  -->
+  <div class="form-group">
+
+    <label>Descripción</label>
+    <input class="form-control" id="nombre" name="comment[descripcion]" placeholder="Escribe un comentario" type="text" maxlength="250" required>  
+  </div>
+  <button type="submit" class="btn btn-primary">Comentar</button>
+  <a href=" ../achievements/" class="btn btn-primary">Volver</a>
+</form> 
