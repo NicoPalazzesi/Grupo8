@@ -1,12 +1,11 @@
 <h1>Perfil de <%= @usuario.nombre %><h1>
-
 	<h4>Nombre: <%= @usuario.nombre %></h4>
 	<h4>Apellido: <%= @usuario.apellido %></h4>
 	<% if current_user == @usuario %>
 		<h4>Puntos del usuario: <%= @usuario.puntos %></h4>
 	<% end %>
 	<br>
-	<table class="table">
+	<div class="panel panel-default"><table class="table">
 	<tr>
 		<th>Descripción</th>
 		<th>Calificación</th>
@@ -21,7 +20,31 @@
 			<%end%>
 		</tr>
 	<%end%>
+ 	</table>
+  	</div>
+  <h4>Publicaciones realizadas por <%=@usuario.nombre %>:</h4>
+    	<br>
+  <div class="panel panel-default">
+  	<table class="table">
+  	<tr>
+		<th>Titulo</th>
+		<th>Ciudad</th>
+		<th>Resuelta?</th>
+	</tr>
+	<% @usuario.publications.each do |publicacion| %>
+		<tr>
+			<td><%=link_to publicacion.titulo, publicacion%></td>
+			<td><%=publicacion.ciudad%></td>
+			<%if publicacion.qualification.nil?%>
+				<td>No</td>
+			<%else%>
+				<td>Sí</td>
+			<%end%>	
+		</tr>
+	<%end%>
   </table>
+	</div>
+
 
 	<% if current_user == @usuario %>
 		<%= link_to 'Editar Perfil',  edit_user_registration_path, class: 'btn btn-primary' %>
