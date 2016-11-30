@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :publications, dependent: :destroy
   has_many :ofrecimientos, dependent: :destroy
   has_many :qualifications, dependent: :destroy
+  belongs_to  :achievement
   
   before_validation :mayor_de_edad
 

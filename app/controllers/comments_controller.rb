@@ -11,10 +11,10 @@ class CommentsController < ApplicationController
 		@comentario.user_id = current_user.id
 		if @comentario.save
 			flash[:notice] = "Comentario publicado."
-        	redirect_to root_path
+        	redirect_to @comentario.publication
       	else	
       		flash[:notice] = "No se pudo publicar el comentario"
-        	render plain: params[:publication_id]	
+        	render :new	
     	end
 	end
 

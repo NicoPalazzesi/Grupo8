@@ -24,7 +24,7 @@
           </div>
           <% if user_signed_in? %>
             <% if @usuarioActual == @publicacion.user || @usuarioActual.admin %> 
-              <%= link_to "Eliminar", @publicacion, method: :delete, class: 'btn btn-primary' %>   
+                            <%= link_to "Eliminar", @publicacion, method: :delete, class: 'btn btn-primary',  data: { confirm: '¿Desea eliminar la publicación?' }  %>   
             <%end%>
             <% if @usuarioActual == @publicacion.user%> 
                 <%= link_to "Editar", edit_publication_path(@publicacion), class: 'btn btn-primary' %>
@@ -57,7 +57,9 @@
                       </ul>
                     <%end%>
                   <%end%>
-                  <%= link_to "Dejar un comentario", new_comment_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
+                  <%if current_user != @publicacion.user && current_user%>
+                    <%= link_to "Dejar un comentario", new_comment_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
+                  <%end%>
                   </div>
                 </div>
             </div>

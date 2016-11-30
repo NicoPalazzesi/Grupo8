@@ -5,14 +5,19 @@ class BuysController < ApplicationController
 
 	def create
 		@buys=Buy.new(params.require(:buy).permit(:tarjeta, :puntos))
-		if @buys.save
-			current_user.update(puntos: current_user.puntos+@buys.puntos)
-			flash[:notice] = "Compra exitosa"
-			redirect_to root_path
+		if @buys.all_digits(params[:buy][:tarjeta])
+			render plain: "Anda bien" 
 		else
-			flash[:notice] = "Ingrese solo los numeros de la tarjeta"
-			render :new
+			render plain: "Anda mal"
 		end
+		# if @buys.save
+		# 	current_user.update(puntos: current_user.puntos+@buys.puntos)
+		# 	flash[:notice] = "Compra exitosa"
+		# 	redirect_to root_path
+		# else
+		# 	flash[:notice] = "Ingrese solo los numeros de la tarjeta"
+		# 	render :new
+		# end
 	end
 
 	def index
