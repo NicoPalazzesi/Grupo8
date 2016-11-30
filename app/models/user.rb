@@ -12,6 +12,7 @@ class User < ApplicationRecord
   belongs_to  :achievement
   
   before_validation :mayor_de_edad
+  before_validation :agregar_logro
 
   private
   	def mayor_de_edad #Valida que sea mayor de edad
@@ -19,4 +20,13 @@ class User < ApplicationRecord
      		errors.add(:fecha, ": Usted debe ser mayor de 18 años para Registrarse")
      	end
   	end	
+
+    def agregar_logro
+      logro = Achievement.find_by(rangoMin: 1)
+      if !logro.nil?
+        self.achievement = logro
+      end
+      
+    end
+
 end
