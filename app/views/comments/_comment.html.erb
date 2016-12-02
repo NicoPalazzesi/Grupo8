@@ -1,18 +1,17 @@
-<%@comentarios.each do |comentario| %>
 <ul class="comments">
 <li class="clearfix">
   <div class="post-comments">
-    <p class="meta"><%=@publicacion.created_at.day%>/<%=@publicacion.created_at.month%>/<%=@publicacion.created_at. year%> <a href="#"><%= link_to comentario.user.nombre, comentario.user %></a> dijo:
+    <p class="meta"><%=@publicacion.created_at.day%>/<%=@publicacion.created_at.month%>/<%=@publicacion.created_at. year%> <a href="#"><%= link_to comment.user.nombre, comment.user %></a> dijo:
     <p>
-      <%=comentario.descripcion%>
+      <%=comment.descripcion%>
     </p>
-    <%if !comentario.answer.nil?%>
-      <h4>Respuesta de <%=comentario.publication.user.nombre%>:</h4>
-        <p><%=comentario.answer.descripcion%></p>
+    <%if !comment.answer.nil?%>
+      <h4>Respuesta de <%=comment.publication.user.nombre%>:</h4>
+        <p><%=comment.answer.descripcion%></p>
     <%end%>
     <p>
-      <%if current_user == @publicacion.user && comentario.user != @publicacion.user && comentario.answer.nil?%>  <h2>Responder:</h2>
-        <%= form_for([comentario, comentario.build_answer]) do |f| %>
+      <%if current_user == @publicacion.user && comment.user != @publicacion.user && comment.answer.nil?%>  <h2>Responder:</h2>
+        <%= form_for([comment, comment.build_answer]) do |f| %>
         <p>
           <%= f.label :descripcion %><br>
           <%= f.text_area :descripcion, required: true %>
@@ -26,4 +25,3 @@
   </div>
 </li>
 </ul>
-<%end%>

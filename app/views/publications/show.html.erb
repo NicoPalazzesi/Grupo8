@@ -17,17 +17,15 @@
                   <h3 class="text-success">Comentarios</h3>
                           <hr/>
                   <%if @comentarios.blank? %>
-                    
                       <font color="red"><h4>No hay comentarios todavía :(</h4></font>
-                    
-                  <%else%>     
-                    <%= render @comentarios%>
+                  <%else%>  
+                      <%= render @comentarios%>
                   <%end%>
                   <%if current_user != @publicacion.user && current_user%>
                     <%= link_to "Dejar un comentario", new_comment_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
                   <%end%>
-                  </div>
                 </div>
+              </div>
             </div>
           </div>
           <div class="container bootstrap snippet">
@@ -40,6 +38,7 @@
                 </div>
               </div>
             </div>
+          </div>
           <div>      
             <!-- Boton para calificar -->
             <%if !(@ofrecimiento_aceptado.nil?) and (current_user == @publicacion.user) and (@calificacion_calificado.nil?)%> <!-- Compruebo que haya algun ofrecimiento aceptado-->
@@ -47,16 +46,13 @@
                 <p><%= link_to "Calificar", new_qualification_path(:user_ofrecido => @ofrecimiento_aceptado.user_id, :publicacion_id => @publicacion.id), class: "btn btn-primary" %></p>
               <% end %>
             <% end %>
-            </div>
           </div>
         <br>
           <a href=" ../" class="btn btn-primary">Volver</a>
 
         </div>
 
-      </div>
-		
-    </div>
+
 
 </body>
 </html>
