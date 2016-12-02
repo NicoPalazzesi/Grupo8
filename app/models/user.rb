@@ -16,8 +16,8 @@ class User < ApplicationRecord
 
   def actualizar_logro
     logro = Achievement.where('"rangoMin" <= :points AND "rangoMax" >= :points', points: self.puntos)
-    if !logro.nil?
-      self.achievement = logro.first
+    if !logro.nil? && logro.first.borrado == false
+        self.achievement = logro.first
     else
       self.achievement = Achievement.find_by(id: 0)
     end

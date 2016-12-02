@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201224622) do
+ActiveRecord::Schema.define(version: 20161202111500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20161201224622) do
     t.integer  "rangoMax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "borrado"
   end
 
   create_table "answers", force: :cascade do |t|

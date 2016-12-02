@@ -29,7 +29,7 @@
   	<div class="panel panel-default">
 	  	<table class="table">
 	  	<tr>
-			<th>Titulo</th>
+			<th>Título</th>
 			<th>Ciudad</th>
 			<th>Resuelta?</th>
 		</tr>
@@ -51,7 +51,7 @@
   	<div class="panel panel-default">
   		<table class="table">
   		<tr>
-			<th>Titulo</th>
+			<th>Título</th>
 			<th>Ciudad</th>
 			<th>Resuelta?</th>
 		</tr>
@@ -64,6 +64,23 @@
 				<%else%>
 					<td>Sí</td>
 				<%end%>	
+			</tr>
+		<%end%>
+  		</table>
+	</div>
+	<h4>Gauchadas realizadas:</h4>
+  	<div class="panel panel-default">
+  		<table class="table">
+  		<tr>
+			<th>Título</th>
+			<th>Ciudad</th>
+		</tr>
+		<% @usuario.ofrecimientos.each do |ofrecimiento| %>
+			<tr>
+				<%if ofrecimiento.aceptado && ofrecimiento.publication.qualification.calificacion%>	
+					<td><%=link_to ofrecimiento.publication.titulo, ofrecimiento.publication%></td>
+					<td><%=ofrecimiento.publication.ciudad%></td>
+				<%end%>
 			</tr>
 		<%end%>
   		</table>
