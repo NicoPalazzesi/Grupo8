@@ -10,6 +10,7 @@ def create
 				@buys.save
 				current_user.puntos=current_user.puntos+@buys.puntos
 				current_user.save
+				current_user.actualizar_logro
 				flash[:notice] = "Compra exitosa. Ha comprado #{@buys.puntos} punto/s con un valor total de $#{@buys.puntos*12}"
 				redirect_to root_path
 			else

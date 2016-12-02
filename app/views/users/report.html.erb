@@ -1,19 +1,21 @@
 <h3 class='titulo_logros'>Sección de Reportes de Usuarios</h3>
 <h5>Aqui podrá encontrar un listado de todos los usuarios ordenados por cantidad de puntos</h5>
 
-<table class="table">
-	<tr>
-		<th>Nombre</th>
-		<th>Apellido</th>
-		<th>Puntos</th>
-	</tr>
-	<% User.all.order("puntos desc").each do |f| %>
+<div class="panel panel-default">
+	<table class="table">
 		<tr>
-			<td><%= f.nombre %></td>
-			<td><%= f.apellido %></td>
-			<td><%= f.puntos %></td>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Puntos</th>
 		</tr>
-	<% end %>
-</table>
+		<% User.all.order("puntos desc").each do |f| %>
+			<tr>
+				<td><%= f.nombre %></td>
+				<td><%= f.apellido %></td>
+				<td><%= f.puntos %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
 <br>
 <a href=" ../" class="btn btn-primary">Volver</a>
