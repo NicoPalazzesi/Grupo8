@@ -26,6 +26,7 @@ class QualificationsController < ApplicationController
 				#Resto 2 puntos
 			end
 			@calificaciones.user.save
+			@calificaciones.user.actualizar_logro
 			flash[:notice] = "Su puntuación se guardo exitosamente"
 			redirect_to root_path
 		else

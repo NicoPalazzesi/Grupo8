@@ -12,8 +12,17 @@ class User < ApplicationRecord
   belongs_to  :achievement
   
   before_validation :mayor_de_edad
-  before_validation :agregar_logro
+  before_validation :agregar_logro, on: :create
 
+  def actualizar_logro
+    logro = Achievement.where('"rangoMin" <= :points AND "rangoMax" >= :points', points: self.puntos)
+    if !logro.nil?
+      self.achievement = logro.first
+    else
+      self.achievement = Achievement.find_by(id: 0)
+    end
+  end
+  
   private
   	def mayor_de_edad #Valida que sea mayor de edad
   		if fecha.present? && fecha > 18.years.ago
@@ -22,11 +31,12 @@ class User < ApplicationRecord
   	end	
 
     def agregar_logro
-      logro = Achievement.find_by(rangoMin: 1)
-      if !logro.nil?
-        self.achievement = logro
-      end
-      
+        logro = Achievement.find_by(rangoMin: 1)
+        if !logro.nil?
+          self.achievement = logro
+        else
+          self.achievement = Achievement.find_by(id:0)
+        end
     end
 
 end

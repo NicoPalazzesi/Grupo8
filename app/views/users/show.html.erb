@@ -1,6 +1,7 @@
 <h1>Perfil de <%= @usuario.nombre %><h1>
 	<h4>Nombre: <%= @usuario.nombre %></h4>
 	<h4>Apellido: <%= @usuario.apellido %></h4>
+	<h4>Logro: <%=@usuario.achievement.nombre %></h4>
 	<% if current_user == @usuario %>
 		<h4>Puntos del usuario: <%= @usuario.puntos %></h4>
 	<% end %>

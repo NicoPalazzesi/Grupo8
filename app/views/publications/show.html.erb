@@ -9,35 +9,7 @@
 <body>
     <div class="container">
 
-      <div class="blog-header">
-        <h1 class="blog-title"><%= @publicacion.titulo %></h1>
-      	<p class="blog-post-meta">Por <%= link_to @publicacion.user.nombre, @publicacion.user %><a href="#"></a> el <span class="date sub-text"><%=@publicacion.created_at.day%>/<%=@publicacion.created_at.month%>/<%=@publicacion.created_at.year%></span></p>
-      </div>
-
-      <% if @publicacion.foto.present? %>
-        <%= image_tag @publicacion.foto, :size => '340x340'%>
-      <% else %>
-        <img src="http://68.media.tumblr.com/avatar_28012e5b8492_128.png" width=100 height=150/>
-      <% end %>
-
-      <div class="row">
-        <div class="col-sm-8 blog-main">
-          <div class="blog-post">
-            <hr>
-            <p><%=@publicacion.descripcion%></p>
-            <p>Ciudad: <%=@publicacion.ciudad%></p>
-          </div>
-          <% if user_signed_in? %>
-            <% if @usuarioActual == @publicacion.user || @usuarioActual.admin %> 
-                            <%= link_to "Eliminar", @publicacion, method: :delete, class: 'btn btn-primary',  data: { confirm: '¿Desea eliminar la publicación?' }  %>   
-            <%end%>
-            <% if @usuarioActual == @publicacion.user%> 
-                <%= link_to "Editar", edit_publication_path(@publicacion), class: 'btn btn-primary' %>
-            <% end %> 
-            <% if current_user != @publicacion.user && @publicacion.ofrecimientos.find_by(user: current_user.id).nil? %> 
-              <%= link_to "Ofrecerme", new_ofrecimiento_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
-            <%end%>
-          <%end%>
+      <%= render @publicacion%>
           <div class="container bootstrap snippet">
             <div class="row">
               <div class="col-md-12">
@@ -49,22 +21,7 @@
                       <font color="red"><h4>No hay comentarios todavía :(</h4></font>
                     
                   <%else%>     
-                    <%@comentarios.each do |comentario| %>
-                      <ul class="comments">
-                      <li class="clearfix">
-                        <div class="post-comments">
-                          <p class="meta"><%=@publicacion.created_at.day%>/<%=@publicacion.created_at.month%>/<%=@publicacion.created_at. year%> <a href="#"><%= link_to comentario.user.nombre, comentario.user %></a> dijo:
-                          <p>
-                            <%=comentario.descripcion%>
-                          </p><p>
-                            <%if current_user == @publicacion.user && comentario.user != @publicacion.user%>     
-                              <%= link_to "Responder", new_comment_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
-                            <%end%>
-                          </p>
-                        </div>
-                      </li>
-                      </ul>
-                    <%end%>
+                    <%= render @comentarios%>
                   <%end%>
                   <%if current_user != @publicacion.user && current_user%>
                     <%= link_to "Dejar un comentario", new_comment_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
@@ -73,27 +30,13 @@
                 </div>
             </div>
           </div>
-           <div class="container bootstrap snippet">
+          <div class="container bootstrap snippet">
             <div class="row">
               <div class="col-md-12">
                 <div class="blog-comment">
                   <h3 class="text-success">Ofrecimientos</h3>
                           <hr/>
-                  <%@ofrecimientos.each do |ofrecimiento| %>
-                  <ul class="comments">
-                  <li class="clearfix">
-                    <div class="post-comments">
-                        <p class="meta"><a href="#"><%= link_to ofrecimiento.user.nombre, ofrecimiento.user %></a> se ofreció para el día <%=ofrecimiento.fecha.day%>/<%=ofrecimiento.fecha.month%>/<%=ofrecimiento.fecha.year%></p>
-                        <p><%=ofrecimiento.descripcion%> </p>
-                        <% if @publicacion.ofrecimientos.find_by(aceptado: true).nil? and current_user == @publicacion.user and ofrecimiento.fecha >= Date.today%>
-                        <p>
-                        <%=link_to "Aceptar", accept_ofrecimientos_path(:ofrecimiento_aceptado => ofrecimiento), class: 'btn btn-primary'%>
-                        </p>
-                        <%end%>
-                    </div>
-                  </li>
-                  </ul>
-                  <%end%>
+                        <%= render @ofrecimientos%>
                 </div>
               </div>
             </div>

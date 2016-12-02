@@ -1,0 +1,15 @@
+<%@ofrecimientos.each do |ofrecimiento| %>
+<ul class="comments">
+<li class="clearfix">
+  <div class="post-comments">
+      <p class="meta"><a href="#"><%= link_to ofrecimiento.user.nombre, ofrecimiento.user %></a> se ofreció para el día <%=ofrecimiento.fecha.day%>/<%=ofrecimiento.fecha.month%>/<%=ofrecimiento.fecha.year%></p>
+      <p><%=ofrecimiento.descripcion%> </p>
+      <% if @publicacion.ofrecimientos.find_by(aceptado: true).nil? and current_user == @publicacion.user and ofrecimiento.fecha >= Date.today%>
+      <p>
+      <%=link_to "Aceptar", accept_ofrecimientos_path(:ofrecimiento_aceptado => ofrecimiento), class: 'btn btn-primary'%>
+      </p>
+      <%end%>
+  </div>
+</li>
+</ul>
+<%end%>

@@ -14,6 +14,7 @@ puts "creo las publicaciones"
 	Publication.find_or_create_by(titulo:"Cambiar las tejas de mi casa",descripcion:"Estoy buscando a alguien hábil para las manualidades que pueda ayudarme a cambiar las tejas del techo de mi casa. Requisito fundamental: Soportar bien las bajas temperaturas",ciudad:"Ushuaia",foto:"http://www.techoscfcerramiento.com.ar/techos/tejasg.jpg",user_id:2)
 	
 puts "creo los logros"
+	Achievement.find_or_create_by(nombre: "Sin logro", rangoMin: 0, rangoMax: 0, id: 0)
 	Achievement.find_or_create_by(nombre: "Mal Tipo", rangoMin: -50, rangoMax: -1)
 	Achievement.find_or_create_by(nombre: "Observador", rangoMin: 0, rangoMax: 0)
 	Achievement.find_or_create_by(nombre: "Buen Tipo", rangoMin: 1, rangoMax: 1)

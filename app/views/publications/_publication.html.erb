@@ -1,0 +1,29 @@
+      <div class="blog-header">
+        <h1 class="blog-title"><%= @publicacion.titulo %></h1>
+      	<p class="blog-post-meta">Por <%= link_to @publicacion.user.nombre, @publicacion.user %><a href="#"></a> el <span class="date sub-text"><%=@publicacion.created_at.day%>/<%=@publicacion.created_at.month%>/<%=@publicacion.created_at.year%></span></p>
+      </div>
+
+      <% if @publicacion.foto.present? %>
+        <%= image_tag @publicacion.foto, :size => '340x340'%>
+      <% else %>
+        <img src="http://68.media.tumblr.com/avatar_28012e5b8492_128.png" width=100 height=150/>
+      <% end %>
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <hr>
+            <p><%=@publicacion.descripcion%></p>
+            <p>Ciudad: <%=@publicacion.ciudad%></p>
+          </div>
+          <% if user_signed_in? %>
+            <% if @usuarioActual == @publicacion.user || @usuarioActual.admin %> 
+                            <%= link_to "Eliminar", @publicacion, method: :delete, class: 'btn btn-primary',  data: { confirm: '¿Desea eliminar la publicación?' }  %>   
+            <%end%>
+            <% if @usuarioActual == @publicacion.user%> 
+                <%= link_to "Editar", edit_publication_path(@publicacion), class: 'btn btn-primary' %>
+            <% end %> 
+            <% if current_user != @publicacion.user && @publicacion.ofrecimientos.find_by(user: current_user.id).nil? %> 
+              <%= link_to "Ofrecerme", new_ofrecimiento_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
+            <%end%>
+          <%end%>

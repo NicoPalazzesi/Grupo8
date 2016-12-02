@@ -32,6 +32,7 @@ class PublicationsController < ApplicationController
       if @publication.save
         flash[:notice] = "Publicacion creada exitosamente."
         @publication.user.update(puntos: @publication.user.puntos - 1)
+        @publication.user.actualizar_logro
         redirect_to :action => 'index'            
       else
         flash[:notice] = "El titulo de la publicacion ya existe."
