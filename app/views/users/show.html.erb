@@ -68,7 +68,23 @@
 		<%end%>
   		</table>
 	</div>
-
+	<h4>Gauchadas realizadas:</h4>
+  	<div class="panel panel-default">
+  		<table class="table">
+  		<tr>
+			<th>Título</th>
+			<th>Ciudad</th>
+		</tr>
+		<% @usuario.ofrecimientos.each do |ofrecimiento| %>
+			<tr>
+				<%if ofrecimiento.aceptado && ofrecimiento.publication.qualification.calificacion%>	
+					<td><%=link_to ofrecimiento.publication.titulo, ofrecimiento.publication%></td>
+					<td><%=ofrecimiento.publication.ciudad%></td>
+				<%end%>
+			</tr>
+		<%end%>
+  		</table>
+	</div>
 	<%= link_to 'Editar Perfil',  edit_user_registration_path, class: 'btn btn-primary' %>
 	<% end %>
 	<a href=" ../" class="btn btn-primary">Volver</a>
