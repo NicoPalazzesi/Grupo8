@@ -25,5 +25,26 @@ def create
 	def index
 		redirect_to :action => 'new'
 	end
+	
+	def report
+	end
+
+	def result_report
+
+		@finicio = params[:fechaInicio].to_date.beginning_of_day
+		@ffinal = params[:fechaFinal].to_date.beginning_of_day
+
+		if @ffinal<=Date.today 
+			if @finicio<=@ffinal
+				@compras=Buy.where("created_at >= ? AND created_at <= ?", @finicio, @ffinal+1.days)
+			else
+				flash[:notice] = "La fecha Inicial no debe ser mayor que la fecha Final"
+				render :report
+			end
+		else
+			flash[:notice] = "La fecha Final no puede ser mayor que hoy #{Date.today.strftime('%d/%m/%Y')}"
+			render :report
+		end
+	end
 
 end

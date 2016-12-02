@@ -1,0 +1,31 @@
+<h3 class='titulo_logros'>Sección de Reportes de Ganancias</h3>
+
+<% if !(@compras.empty?) %>
+	<table class="table">
+		<tr>
+			<th>Usuario</th>
+			<th>Fecha (Día/Mes/Año)</th>
+			<th>Puntos</th>
+			<th>Ganancias ($)</th>
+		</tr>
+
+		<% gananciaTotal=0 %>
+
+		<% @compras.each do |f| %>
+				<tr>
+					<td><%= f.user.nombre %> <%= f.user.apellido %></td>
+					<td><%= f.created_at.strftime('%d/%m/%Y') %></td>
+					<td><%= f.puntos %></td>
+					<td><%= f.puntos*12 %></td>
+				</tr>
+				<% gananciaTotal=gananciaTotal+f.puntos*12 %>
+		<% end %>
+	</table>
+
+	<h4>La ganancia total entre el <%= @finicio.strftime('%d/%m/%Y') %> y el <%= @ffinal.strftime('%d/%m/%Y') %> fue de $<%= gananciaTotal%> </h4>
+<% else %>
+	<br>
+	<h4>No se registran compras entre el <%= @finicio.strftime('%d/%m/%Y') %> y el <%= @ffinal.strftime('%d/%m/%Y') %></h4>
+<% end %>
+<br>
+<a href=" ../buys/report" class="btn btn-primary">Volver</a>

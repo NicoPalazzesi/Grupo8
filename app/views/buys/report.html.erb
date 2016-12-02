@@ -1,0 +1,16 @@
+<h3 class='titulo_logros'>Sección de Reportes de Ganancias</h3>
+<h5>Aqui podrá ver las ganancias por la compra de puntos entre dos fechas</h5>
+
+<%= form_tag(result_report_buys_path, method: :get) do %>
+	<label>Fecha Inicial</label>
+	<br>
+	<%= date_field_tag :fechaInicio, "", class:"form-control", required:true %>
+	<br />
+	<label>Fecha Final</label>
+	<br>
+	<%= date_field_tag :fechaFinal, "", class:"form-control", required:true %>
+
+	<br>
+	<button type="submit" class="btn btn-primary">Mostrar Resultados</button>
+	<a href=" ../" class="btn btn-primary">Volver</a>
+<% end %>

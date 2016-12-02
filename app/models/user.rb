@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :ofrecimientos, dependent: :destroy
   has_many :qualifications, dependent: :destroy
   belongs_to  :achievement
+  has_many :buys
   
   before_validation :mayor_de_edad
   before_validation :agregar_logro, on: :create

@@ -21,6 +21,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def report
+  end
+
   def update
   end
 

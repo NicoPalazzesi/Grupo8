@@ -14,7 +14,7 @@ puts "creo las publicaciones"
 	Publication.find_or_create_by(titulo:"Cambiar las tejas de mi casa",descripcion:"Estoy buscando a alguien hábil para las manualidades que pueda ayudarme a cambiar las tejas del techo de mi casa. Requisito fundamental: Soportar bien las bajas temperaturas",ciudad:"Ushuaia",foto:"http://www.techoscfcerramiento.com.ar/techos/tejasg.jpg",user_id:2)
 	
 puts "creo los logros"
-	Achievement.find_or_create_by(nombre: "Sin logro", rangoMin: 0, rangoMax: 0, id: 0)
+	Achievement.find_or_create_by(nombre: "Sin logro", rangoMin: -9999, rangoMax: -9999, id: 0)
 	Achievement.find_or_create_by(nombre: "Mal Tipo", rangoMin: -50, rangoMax: -1)
 	Achievement.find_or_create_by(nombre: "Observador", rangoMin: 0, rangoMax: 0)
 	Achievement.find_or_create_by(nombre: "Buen Tipo", rangoMin: 1, rangoMax: 1)
@@ -25,6 +25,19 @@ puts "creo los logros"
 	Achievement.find_or_create_by(nombre: "Dios", rangoMin: 51, rangoMax: 100)
 	
 puts "creo los usuarios"
-	User.create(nombre:"Nicolas", apellido:"Palazzesi", email:"nicolaspalazzesi@gmail.com", password:"gauchada",fecha:"31-12-1995", telefono:2396628411, admin:true)
-	User.create(nombre:"Nico", apellido:"Pala", email:"nicolaspalazzesi@hotmail.com",fecha:"31-12-1995", telefono:2214216416, password:"gauchada")
-	User.create(nombre:"Franco", apellido:"Fico", email:"franf3895@gmail.com", password:"gauchada",fecha:"03-8-1990", telefono:2214001739)
+	u1=User.find_by(email: "nicolaspalazzesi@gmail.com")
+	if u1.nil?
+		u1=User.create(nombre:"Nicolas", apellido:"Palazzesi", email:"nicolaspalazzesi@gmail.com", password:"gauchada",fecha:"31-12-1995", telefono:2396628411, admin:true)
+	end
+	u2=User.find_by(email: "nicolaspalazzesi@hotmail.com")
+	if u2.nil?
+		u2=User.create(nombre:"Nico", apellido:"Pala", email:"nicolaspalazzesi@hotmail.com",fecha:"31-12-1995", telefono:2214216416, password:"gauchada")
+	end
+	u3=User.find_by(email: "franf3895@gmail.com")
+	if u3.nil?
+		User.create(nombre:"Franco", apellido:"Fico", email:"franf3895@gmail.com", password:"gauchada",fecha:"03-8-1990", telefono:2214001739)
+	end
+
+puts "creo compras"
+	Buy.find_or_create_by(tarjeta: 1111111111111111, puntos: 10, user: u1, created_at: "2016-11-10", updated_at: "2016-11-11")
+	Buy.find_or_create_by(tarjeta: 11111111111111111, puntos: 15, user: u2, created_at: "2016-11-20", updated_at: "2016-11-21")
