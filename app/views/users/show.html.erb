@@ -77,7 +77,7 @@
 		</tr>
 		<% @usuario.ofrecimientos.each do |ofrecimiento| %>
 			<tr>
-				<%if ofrecimiento.aceptado && ofrecimiento.publication.qualification.calificacion%>	
+				<%if ofrecimiento.aceptado && !ofrecimiento.publication.qualification.nil? && ofrecimiento.publication.qualification.calificacion%>	
 					<td><%=link_to ofrecimiento.publication.titulo, ofrecimiento.publication%></td>
 					<td><%=ofrecimiento.publication.ciudad%></td>
 				<%end%>

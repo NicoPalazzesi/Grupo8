@@ -21,6 +21,7 @@ class User < ApplicationRecord
     else
       self.achievement = Achievement.find_by(id: 0)
     end
+    save
   end
   
   private
