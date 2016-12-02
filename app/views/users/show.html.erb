@@ -25,28 +25,33 @@
   	</div>
   	<br>
   <% if @usuario == current_user %>
-  	<h4>Publicaciones que realizaste:</h4>
-  	<div class="panel panel-default">
-	  	<table class="table">
-	  	<tr>
-			<th>Título</th>
-			<th>Ciudad</th>
-			<th>Resuelta?</th>
-		</tr>
-		<% @usuario.publications.each do |publicacion| %>
-			<tr>
-				<td><%=link_to publicacion.titulo, publicacion%></td>
-				<td><%=publicacion.ciudad%></td>
-				<%if publicacion.qualification.nil?%>
-					<td>No</td>
-				<%else%>
-					<td>Sí</td>
-				<%end%>	
+  	<% if !@usuario.publications.empty?%>
+	  	<h4>Publicaciones que realizaste:</h4>
+	  	<div class="panel panel-default">
+		  	<table class="table">
+		  	<tr>
+				<th>Título</th>
+				<th>Ciudad</th>
+				<th>Resuelta?</th>
 			</tr>
-		<%end%>
-  		</table>
-	</div>
+			<% @usuario.publications.each do |publicacion| %>
+				<tr>
+					<td><%=link_to publicacion.titulo, publicacion%></td>
+					<td><%=publicacion.ciudad%></td>
+					<%if publicacion.qualification.nil?%>
+						<td>No</td>
+					<%else%>
+						<td>Sí</td>
+					<%end%>	
+				</tr>
+			<%end%>
+	  		</table>
+		</div>
+	<%else%>
+		<h4>Aún no realizaste publicaciones</h4>
+	<%end%>	
 	<br>
+	<% if !@usuario.ofrecimientos.empty?%>
 	<h4>Publicaciones a las que te ofreciste:</h4>
   	<div class="panel panel-default">
   		<table class="table">
@@ -68,6 +73,9 @@
 		<%end%>
   		</table>
 	</div>
+	<%else%>
+	<h4>Aún no te ofreciste a realizar ninguna gauchada</h4>
+	<%end%>
 	<h4>Gauchadas realizadas:</h4>
   	<div class="panel panel-default">
   		<table class="table">
