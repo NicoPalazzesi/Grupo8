@@ -1,6 +1,7 @@
 <h3 class='titulo_logros'>Sección de Reportes de Ganancias</h3>
 
 <% if !(@compras.empty?) %>
+	<div class="panel panel-default">
 	<table class="table">
 		<tr>
 			<th>Usuario</th>
@@ -21,7 +22,7 @@
 				<% gananciaTotal=gananciaTotal+f.puntos*12 %>
 		<% end %>
 	</table>
-
+</div>
 	<h4>La ganancia total entre el <%= @finicio.strftime('%d/%m/%Y') %> y el <%= @ffinal.strftime('%d/%m/%Y') %> fue de $<%= gananciaTotal%> </h4>
 <% else %>
 	<br>
