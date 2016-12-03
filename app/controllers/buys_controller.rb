@@ -15,11 +15,11 @@ def create
 				redirect_to root_path
 			else
 				flash[:notice] = "El número de tarjeta ingresado no es valido. Por favor intente con otra tarjeta"
-				render :new
+				redirect_to :action => 'new'
 			end
 		else
 			flash[:notice] = "Ingrese solo los números de la tarjeta"
-			render :new
+			redirect_to :action => 'new'
 		end
 	end
 
@@ -40,11 +40,11 @@ def create
 				@compras=Buy.where("created_at >= ? AND created_at <= ?", @finicio, @ffinal+1.days)
 			else
 				flash[:notice] = "La fecha Inicial no debe ser mayor que la fecha Final"
-				render :report
+				redirect_to :action => 'report'
 			end
 		else
 			flash[:notice] = "La fecha Final no puede ser mayor que hoy #{Date.today.strftime('%d/%m/%Y')}"
-			render :report
+			redirect_to :action => 'report'
 		end
 	end
 

@@ -1,31 +1,42 @@
-<% unless params[:buscar_titulo].blank? and params[:buscar_ciudad].blank? %>
-	<h5>resultados de la busqueda</h5>
+<% if @publicaciones.empty? %>
+	<% unless params[:buscar_titulo].blank? and params[:buscar_ciudad].blank? %>
+			<h3>No se encontraron coincidencias.</h3>
+		<% else %>
+			<h3>No hay publicaciones para mostrar en este momento.</h3>
+	<% end %>
+<% else %>
+	<% unless params[:buscar_titulo].blank? and params[:buscar_ciudad].blank? %>
+		<h5>Resultados de la busqueda</h5>
+	<% end %>
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading"> <strong>Publicaciones</strong></div>
+		  
+		  <!-- Table -->
+		  <table class="table">
+			<tr>
+				<th>Título</th>
+				<th>Ciudad</th>
+				<th>Foto</th>
+			</tr>
+			<% @publicaciones.each do |publicacion| %>
+				<tr>
+					<td><%=link_to publicacion.titulo, publicacion%></td>
+					<!--<td><%=publicacion.descripcion%></td>-->
+					<td><%=publicacion.ciudad%></td>
+					<td>  
+					<% if publicacion.foto.present? %>
+						<%= image_tag publicacion.foto, :size => '80x80'%>
+					<% else %>
+						<img src="http://68.media.tumblr.com/avatar_28012e5b8492_128.png" width=80 height=80/>
+					<% end %>
+					</td>	
+				</tr>
+			<%end%>
+		  </table>
+		</div>
 <% end %>
-
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading"> <strong>Publicaciones</strong></div>
-  
-  <!-- Table -->
-  <table class="table">
-	<tr>
-		<th>Título</th>
-		<th>Ciudad</th>
-		<th>Foto</th>
-	</tr>
-	<% @publicaciones.each do |publicacion| %>
-		<tr>
-			<td><%=link_to publicacion.titulo, publicacion%></td>
-			<!--<td><%=publicacion.descripcion%></td>-->
-			<td><%=publicacion.ciudad%></td>
-			<td>  
-			<% if publicacion.foto.present? %>
-				<%= image_tag publicacion.foto, :size => '80x80'%>
-			<% else %>
-				<img src="http://68.media.tumblr.com/avatar_28012e5b8492_128.png" width=80 height=80/>
-			<% end %>
-			</td>	
-		</tr>
-	<%end%>
-  </table>
-</div>
+<% unless params[:buscar_titulo].blank? and params[:buscar_ciudad].blank? %>
+	<br>
+	<a href=" ../" class="btn btn-primary">Volver</a>
+<%end%>
