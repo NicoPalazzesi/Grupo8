@@ -7,7 +7,7 @@ class AchievementsController < ApplicationController
 	def index 
 		if user_signed_in?
 			if current_user.admin
-				@achievement = Achievement.all
+				@achievements = Achievement.all.ordenar_asc
 			else
 				redirect_to "/"
 			end
@@ -17,23 +17,34 @@ class AchievementsController < ApplicationController
 
 	end 
 
-	def create
-		@achievement = Achievement.new(params.require(:achievement).permit(:nombre, :rangoMin, :rangoMax))
+def create
+
+    	@achievement = Achievement.new(params.require(:achievement).permit(:nombre, :rangoMin, :rangoMax))
 		
 		if @achievement.rangoMin > @achievement.rangoMax
 			flash[:notice] = "Error: El rango mínimo es mayor al rango máximo."
-			redirect_to :action => 'new' 
-		else 
-			if @achievement.save
-				flash[:notice] = "Logro creado exitosamente."
-         		redirect_to :action => 'index'
-         		
-      		else
-      			flash[:notice] = "Este logro ya existe."
-        		redirect_to :action => 'new'		
-        		
-    		end
-    	end
+	 		redirect_to :action => 'new' 
+		else
+			logro = Achievement.find_by(nombre: params[:achievement][:nombre]) #pido el nuevo nombre que ingresa		
+			if !logro.nil? && logro.borrado == true then				
+				# si el logro existe y esta borrado logicamente entonces lo activo
+				flash[:notice] = "Este logro tiene vinculado ciertos usuarios. Asegurate de reactivarlo."
+       			redirect_to :action => 'index'
+			else
+				if !logro.nil? && logro.borrado == false then 
+					# si el logro existe pero no esta borrado entonces no puedo crearlo ya que existe
+					flash[:notice] = "Este logro ya existe."
+       				redirect_to :action => 'new'
+				else
+					if logro.nil? then
+						@achievement.borrado = false # le asigno false cuando lo creo
+						@achievement.save
+						flash[:notice] = "Logro creado exitosamente."
+         				redirect_to :action => 'index'
+         			end
+         		end
+			end
+		end
 	end
 
 	def show
@@ -64,6 +75,9 @@ class AchievementsController < ApplicationController
         		render :edit
 			else #si el nombre que ingreso no existe entonces lo creo
         		@achievement.update(params.require(:achievement).permit(:nombre, :rangoMin, :rangoMax))
+        		@achievement.users.each do |usuario|
+        			usuario.actualizar_logro
+        		end
         		flash[:notice] = "Logro editado exitosamente."
         		redirect_to :action => 'index'
         	end
@@ -71,8 +85,26 @@ class AchievementsController < ApplicationController
     end
 
 	def destroy
-		Achievement.find(params[:id]).destroy
-		flash[:notice] = "Logro eliminado."
-      	redirect_to :action => 'index'
+		@achievement = Achievement.find(params[:id])
+		if @achievement.users.empty? then
+			Achievement.find(params[:id]).destroy
+      		flash[:notice] = "Logro eliminado."
+     		redirect_to :action => 'index'			
+      	else # significa que tiene algun usuario asociado por lo tanto se hace baja logica			
+			@achievement.borrado = true
+			@achievement.save
+			flash[:notice] = "Logro eliminado logicamente."
+     		redirect_to :action => 'index'
+      	end	
 	end
+
+	def reactivar
+		@achievement = Achievement.find(params[:id])
+		@achievement.borrado = false
+		@achievement.save
+		flash[:notice] = "Logro reactivado exitosamente."
+  	 	redirect_to :back
+	end
+
 end
+

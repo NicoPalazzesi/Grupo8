@@ -21,4 +21,7 @@ Rails.application.routes.draw do
   resources :ofrecimientos do
     get 'accept', :on => :collection
   end
+  resources :achievements do
+    get 'reactivar', :on => :member
+  end
 end
