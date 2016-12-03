@@ -7,9 +7,9 @@ def create
 		if @buys.all_digits(params[:buy][:tarjeta]) #Verifico que la tarjeta ingresada sean solo numeros
 			@tarjeta = Buy.find_by(tarjeta: @buys.tarjeta) #Busco la tarjeta en la base de datos
 			if !(@tarjeta.nil?) #Compruebo la tarjeta estaba en la base
+				@buys.user_id=current_user.id
 				@buys.save
-				current_user.puntos=current_user.puntos+@buys.puntos
-				current_user.save
+				current_user.update(puntos: current_user.puntos+@buys.puntos)
 				current_user.actualizar_logro
 				flash[:notice] = "Compra exitosa. Ha comprado #{@buys.puntos} punto/s con un valor total de $#{@buys.puntos*12}"
 				redirect_to root_path
