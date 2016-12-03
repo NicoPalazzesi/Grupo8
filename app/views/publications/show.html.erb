@@ -34,7 +34,18 @@
                 <div class="blog-comment">
                   <h3 class="text-success">Ofrecimientos</h3>
                           <hr/>
-                        <%= render @ofrecimientos%>
+                        <%if !@ofrecimiento_aceptado.nil?%>
+                          <ul class="comments">
+                          <li class="clearfix">
+                            <div class="post-comments">
+                                <p class="meta"><a href="#"><%= link_to @ofrecimiento_aceptado.user.nombre, @ofrecimiento_aceptado.user %></a> se ofreció para el día <%=@ofrecimiento_aceptado.fecha.day%>/<%=@ofrecimiento_aceptado.fecha.month%>/<%=@ofrecimiento_aceptado.fecha.year%></p>
+                                <p><%=@ofrecimiento_aceptado.descripcion%> </p>
+                            </div>
+                          </li>
+                        </ul>
+                        <%else%>
+                          <%= render @ofrecimientos%>
+                        <%end%>
                 </div>
               </div>
             </div>

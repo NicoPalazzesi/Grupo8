@@ -21,7 +21,7 @@ class OfrecimientosController < ApplicationController
       else 
         if @ofrecimiento.save
           flash[:notice] = "Te ofreciste exitosamente!"
-          redirect_to root_path
+          redirect_to @ofrecimiento.publication
         else 
           flash[:notice] = "Error al ofrecerte!"
           render :new
@@ -37,7 +37,7 @@ class OfrecimientosController < ApplicationController
     ofre.save
     IntercambiarDatosMailer.email_aceptado(ofre.user, ofre.publication.user).deliver
     IntercambiarDatosMailer.email_contacto(ofre.user, ofre.publication.user).deliver
-    redirect_to :back
+    redirect_to ofre.publication
   end
 
 end
