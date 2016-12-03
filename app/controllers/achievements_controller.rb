@@ -39,6 +39,9 @@ def create
 					if logro.nil? then
 						@achievement.borrado = false # le asigno false cuando lo creo
 						@achievement.save
+						User.all.each do |usuario|
+        					usuario.actualizar_logro
+        				end
 						flash[:notice] = "Logro creado exitosamente."
          				redirect_to :action => 'index'
          			end
@@ -75,7 +78,7 @@ def create
         		render :edit
 			else #si el nombre que ingreso no existe entonces lo creo
         		@achievement.update(params.require(:achievement).permit(:nombre, :rangoMin, :rangoMax))
-        		@achievement.users.each do |usuario|
+        		User.all.each do |usuario|
         			usuario.actualizar_logro
         		end
         		flash[:notice] = "Logro editado exitosamente."
