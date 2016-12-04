@@ -12,16 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20161202114630) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "achievements", force: :cascade do |t|
     t.string   "nombre"
     t.integer  "rangoMin"
     t.integer  "rangoMax"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "borrado"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "borrado",    default: false
   end
 
   create_table "answers", force: :cascade do |t|
@@ -97,8 +94,8 @@ ActiveRecord::Schema.define(version: 20161202114630) do
     t.boolean  "admin",                  default: false
     t.integer  "puntos",                 default: 1
     t.integer  "achievement_id"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

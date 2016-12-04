@@ -5,16 +5,21 @@ class BuysController < ApplicationController
 def create
 		@buys=Buy.new(params.require(:buy).permit(:tarjeta, :puntos))
 		if @buys.all_digits(params[:buy][:tarjeta]) #Verifico que la tarjeta ingresada sean solo numeros
-			@tarjeta = Buy.find_by(tarjeta: @buys.tarjeta) #Busco la tarjeta en la base de datos
-			if !(@tarjeta.nil?) #Compruebo la tarjeta estaba en la base
-				@buys.user_id=current_user.id
-				@buys.save
-				current_user.update(puntos: current_user.puntos+@buys.puntos)
-				current_user.actualizar_logro
-				flash[:notice] = "Compra exitosa. Ha comprado #{@buys.puntos} punto/s con un valor total de $#{@buys.puntos*12}"
-				redirect_to root_path
+			if params[:cod_seg].length >= 3
+				@tarjeta = Buy.find_by(tarjeta: @buys.tarjeta) #Busco la tarjeta en la base de datos
+				if !(@tarjeta.nil?) #Compruebo la tarjeta estaba en la base
+					@buys.user_id=current_user.id
+					@buys.save
+					current_user.update(puntos: current_user.puntos+@buys.puntos)
+					current_user.actualizar_logro
+					flash[:notice] = "Compra exitosa. Ha comprado #{@buys.puntos} punto/s con un valor total de $#{@buys.puntos*12}"
+					redirect_to root_path
+				else
+					flash[:notice] = "El número de tarjeta ingresado no es valido. Por favor intente con otra tarjeta"
+					redirect_to :action => 'new'
+				end
 			else
-				flash[:notice] = "El número de tarjeta ingresado no es valido. Por favor intente con otra tarjeta"
+				flash[:notice] = "El codigo de la tarjeta contiene al menos 3 digitos"
 				redirect_to :action => 'new'
 			end
 		else
