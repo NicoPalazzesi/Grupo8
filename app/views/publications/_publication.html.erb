@@ -23,7 +23,7 @@
       <% if @usuarioActual == @publicacion.user%> 
           <%= link_to "Editar", edit_publication_path(@publicacion), class: 'btn btn-primary' %>
       <% end %> 
-      <% if current_user != @publicacion.user && @publicacion.ofrecimientos.find_by(user: current_user.id).nil? && ofrecimiento_aceptado.nil?%> 
+      <% if current_user != @publicacion.user && @publicacion.ofrecimientos.find_by(user: current_user).nil? && @ofrecimiento_aceptado.nil?%> 
         <%= link_to "Ofrecerme", new_ofrecimiento_path(:publicacion => @publicacion.id), class: 'btn btn-primary' %>
       <%end%>
     <%end%>
