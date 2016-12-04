@@ -92,13 +92,13 @@ def create
 		if @achievement.users.empty? then
 			Achievement.find(params[:id]).destroy
       		flash[:notice] = "Logro eliminado."
-     		redirect_to :action => 'index'			
       	else # significa que tiene algun usuario asociado por lo tanto se hace baja logica			
 			@achievement.borrado = true
 			@achievement.save
-			flash[:notice] = "Logro eliminado logicamente."
-     		redirect_to :action => 'index'
-      	end	
+			flash[:notice] = "Logro eliminado logicamente."	
+		end
+     	redirect_to :action => 'index'
+      	
 	end
 
 	def reactivar
@@ -106,6 +106,9 @@ def create
 		@achievement.borrado = false
 		@achievement.save
 		flash[:notice] = "Logro reactivado exitosamente."
+		User.all.each do |usuario|
+			usuario.actualizar_logro
+		end
   	 	redirect_to :back
 	end
 
