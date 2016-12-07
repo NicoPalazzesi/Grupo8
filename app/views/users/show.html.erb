@@ -91,7 +91,6 @@
 			<th>Título</th>
 			<th>Ciudad</th>
 		</tr>
-		<%if !@usuario.ofrecimientos.empty?%>
 		<% @usuario.ofrecimientos.each do |ofrecimiento| %>
 			<tr>
 				<%if ofrecimiento.aceptado && !ofrecimiento.publication.qualification.nil? && ofrecimiento.publication.qualification.calificacion%>	
@@ -99,7 +98,6 @@
 					<td><%=ofrecimiento.publication.ciudad%></td>
 				<%end%>
 			</tr>
-		<%end%>
 		<%end%>
   		</table>
 	</div>
