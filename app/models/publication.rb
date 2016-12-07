@@ -6,5 +6,5 @@ class Publication < ApplicationRecord
 	belongs_to :user
 	has_many :comments, dependent: :destroy
 	has_many :ofrecimientos, dependent: :destroy
-	has_one :qualification, dependent: :destroy
+	has_one :qualification
 end
