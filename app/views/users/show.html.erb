@@ -18,7 +18,13 @@
 		</tr>
 		<% @usuario.qualifications.each do |calificacionUsuario| %>
 			<tr>
-				<td><%=link_to calificacionUsuario.publication.titulo, calificacionUsuario.publication%></td>
+				<td>
+				<%if calificacionUsuario.publication.nil?%>
+					Publicación eliminada
+				<%else%>
+					<%=link_to calificacionUsuario.publication.titulo, calificacionUsuario.publication%>
+				<%end%>
+				</td>
 				<td><%=calificacionUsuario.descripcion%></td>
 				<% if calificacionUsuario.calificacion == true %>
 					<td>Positivo</td>
