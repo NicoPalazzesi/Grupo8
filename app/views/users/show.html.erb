@@ -1,29 +1,36 @@
-<h1>Perfil de <%= @usuario.nombre %><h1>
+<h1 class='titulo_logros'>Perfil de <%= @usuario.nombre %><h1>
 	<h4>Nombre: <%= @usuario.nombre %></h4>
 	<h4>Apellido: <%= @usuario.apellido %></h4>
-	<h4>Logro: <%=@usuario.achievement.nombre %></h4>
 	<% if current_user == @usuario %>
+		<h4>Fecha de Nacimiento: <%= @usuario.fecha.day %>/<%= @usuario.fecha.month %>/<%= @usuario.fecha.year %></h4>
+		<h4>E-mail: <%= @usuario.email %></h4>
+		<h4>Telefono: <%= @usuario.telefono %></h4>
 		<h4>Puntos del usuario: <%= @usuario.puntos %></h4>
 	<% end %>
+	<h4>Logro: <%=@usuario.achievement.nombre %></h4>
 	<br>
-	<div class="panel panel-default"><table class="table">
-	<tr>
-		<th>Descripción</th>
-		<th>Calificación</th>
-	</tr>
-	<% @usuario.qualifications.each do |calificacionUsuario| %>
+	<% if !(@usuario.qualifications.empty?) %>
+		<div class="panel panel-default"><table class="table">
 		<tr>
-			<td><%=calificacionUsuario.descripcion%></td>
-			<% if calificacionUsuario.calificacion == true %>
-				<td>Positivo</td>
-			<% else %>
-				<td>Negativo</td>
-			<%end%>
+			<th>Publicacion</th>
+			<th>Descripción</th>
+			<th>Calificación</th>
 		</tr>
-	<%end%>
- 	</table>
-  	</div>
-  	<br>
+		<% @usuario.qualifications.each do |calificacionUsuario| %>
+			<tr>
+				<td><%=link_to calificacionUsuario.publication.titulo, calificacionUsuario.publication%></td>
+				<td><%=calificacionUsuario.descripcion%></td>
+				<% if calificacionUsuario.calificacion == true %>
+					<td>Positivo</td>
+				<% else %>
+					<td>Negativo</td>
+				<%end%>
+			</tr>
+		<%end%>
+	 	</table>
+	  	</div>
+	  	<br>
+	 <% end %>
   <% if @usuario == current_user %>
   	<% if !@usuario.publications.empty?%>
 	  	<h4>Publicaciones que realizaste:</h4>
