@@ -69,7 +69,7 @@ def create
 
        	if @minNew > @maxNew
 			flash[:notice] = "Error: El rango mínimo es mayor al rango máximo."
-			render :edit 
+			redirect_to :action => 'edit'
 		else #chequeo que no exista el logro
 			logro = Achievement.find_by(nombre: params[:achievement][:nombre]) #pido el nuevo nombre que ingresa
 			if logro != nil && logro.nombre != nombreAnt #si el logro que ingreso ya existe y no es el que estoy editando entonces ya existe
@@ -95,7 +95,7 @@ def create
       	else # significa que tiene algun usuario asociado por lo tanto se hace baja logica			
 			@achievement.borrado = true
 			@achievement.save
-			flash[:notice] = "Logro eliminado logicamente."	
+			flash[:notice] = "El logro tiene usuarios asignados, por lo que fue desactivado."	
 		end
      	redirect_to :action => 'index'
       	
