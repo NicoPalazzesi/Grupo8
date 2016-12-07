@@ -28,7 +28,7 @@ class QualificationsController < ApplicationController
 			@calificaciones.user.save
 			@calificaciones.user.actualizar_logro
 			flash[:notice] = "Su puntuación se guardo exitosamente"
-			redirect_to root_path
+			redirect_to @calificaciones.publication
 		else
 			flash[:notice] = "Marque una puntuación para el usuario"
 			render :new
